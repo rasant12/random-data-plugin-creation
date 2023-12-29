@@ -23,8 +23,6 @@ describe('Issue create', () => {
       cy.get('.ql-editor').type('Use_The_Random_Data_Plugin_For_Several_Words');
 
       //Type value to title input field
-      //Order of filling in the fields is first description, then title on purpose
-      //Otherwise filling title first sometimes doesn't work due to web page implementation
       cy.get('input[name="title"]').type('Use the random data plugin for a single word ');
 
       //Select Baby Yoda from reporter dropdown
@@ -47,7 +45,7 @@ describe('Issue create', () => {
     cy.reload();
     cy.contains('Issue has been successfully created.').should('not.exist');
 
-    //Assert than only one list with name Backlog is visible and do steps inside of it
+    //Assert that only one list with name Backlog is visible and do steps inside of it
     cy.get('[data-testid="board-list:backlog').should('be.visible').and('have.length', '1').within(() => {
       //Assert that this list contains 5 issues and first element with tag p has specified text
       cy.get('[data-testid="list-issue"]')
